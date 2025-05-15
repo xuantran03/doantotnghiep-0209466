@@ -84,9 +84,9 @@ const SignUpForm = () => {
         )}
 
         <div className='text-sm text-center text-muted-foreground'>
-          Already have an account?{' '}
+        Đã có tài khoản ?{' '}
           <Link href='/sign-in' target='_self' className='link'>
-            Sign In
+            Đăng nhập
           </Link>
         </div>
       </div>

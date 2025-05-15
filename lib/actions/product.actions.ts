@@ -14,11 +14,11 @@ export async function getLatestProducts() {
     orderBy: { createdAt: 'desc' },
   });
 
-  return convertToPlainObject(data);
+  return convertToPlainObject(data); // chỉnh dữ liệu khi trả về
 }
 
 // Get single product by it's slug
-export async function getProductBySlug(slug: string) {
+export async function getProductBySlug(slug: string) { 
   return await prisma.product.findFirst({
     where: { slug: slug },
   });
@@ -30,18 +30,18 @@ export async function getProductById(productId: string) {
     where: { id: productId },
   });
 
-  return convertToPlainObject(data);
+  return convertToPlainObject(data); // trả về dạng dữ liệu dễ sử dụng hơn
 }
 
 // Get all products
 export async function getAllProducts({
-  query,
-  limit = PAGE_SIZE,
-  page,
-  category,
-  price,
-  rating,
-  sort,
+  query, // tìm kiếm theo tên
+  limit = PAGE_SIZE, // số lượng sản phẩm trên 1 trang
+  page, // trang hiện tại
+  category,// danh mục sản phẩm
+  price,// khoảng giá sản phẩm
+  rating,// đánh giá sản phẩm
+  sort, // sắp xếp sản phẩm
 }: {
   query: string;
   limit?: number;
@@ -51,7 +51,7 @@ export async function getAllProducts({
   rating?: string;
   sort?: string;
 }) {
-  // Query filter
+  // Query filter: Tạo ra câu query để lấy dữ liệu
   const queryFilter: Prisma.ProductWhereInput =
     query && query !== 'all'
       ? {
@@ -62,10 +62,10 @@ export async function getAllProducts({
         }
       : {};
 
-  // Category filter
+  // Category filter: Nếu có category thì thêm vào câu query
   const categoryFilter = category && category !== 'all' ? { category } : {};
 
-  // Price filter
+  // Price filter : Nếu có price thì thêm vào câu query
   const priceFilter: Prisma.ProductWhereInput =
     price && price !== 'all'
       ? {
@@ -76,7 +76,7 @@ export async function getAllProducts({
         }
       : {};
 
-  // Rating filter
+  // Rating filter: Nếu có rating thì thêm vào câu query
   const ratingFilter =
     rating && rating !== 'all'
       ? {
@@ -118,13 +118,13 @@ export async function deleteProduct(id: string) {
   try {
     const productExists = await prisma.product.findFirst({
       where: { id },
-    });
+    }); // kiểm tra xem sản phẩm có tồn tại hay không
 
-    if (!productExists) throw new Error('Product not found');
+    if (!productExists) throw new Error('Product not found'); // nếu không tồn tại thì báo lỗi và dừng
 
-    await prisma.product.delete({ where: { id } });
+    await prisma.product.delete({ where: { id } }); // xóa sản phẩm
 
-    revalidatePath('/admin/products');
+    revalidatePath('/admin/products'); // làm mới lại trang sản phẩm admin
 
     return {
       success: true,
@@ -138,10 +138,10 @@ export async function deleteProduct(id: string) {
 // Create a product
 export async function createProduct(data: z.infer<typeof insertProductSchema>) {
   try {
-    const product = insertProductSchema.parse(data);
+    const product = insertProductSchema.parse(data); // fomat chuẩn data
     await prisma.product.create({ data: product });
 
-    revalidatePath('/admin/products');
+    revalidatePath('/admin/products'); //
 
     return {
       success: true,
@@ -158,7 +158,7 @@ export async function updateProduct(data: z.infer<typeof updateProductSchema>) {
     const product = updateProductSchema.parse(data);
     const productExists = await prisma.product.findFirst({
       where: { id: product.id },
-    });
+    }); // kiểm tra xem sản phẩm có tồn tại hay không ==> lấy bản ghi muốn sửa
 
     if (!productExists) throw new Error('Product not found');
 

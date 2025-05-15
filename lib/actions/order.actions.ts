@@ -17,24 +17,24 @@ import { sendPurchaseReceipt } from '@/email';
 // Create order and create the order items
 export async function createOrder() {
   try {
-    const session = await auth();
+    const session = await auth(); // kiểm tra xem người dùng đã đăng nhập hay chưa
     if (!session) throw new Error('User is not authenticated');
 
-    const cart = await getMyCart();
-    const userId = session?.user?.id;
+    const cart = await getMyCart(); // lấy giỏ hàng của người dùng
+    const userId = session?.user?.id; // lấy id của người dùng
     if (!userId) throw new Error('User not found');
 
-    const user = await getUserById(userId);
+    const user = await getUserById(userId); // lấy thông tin người dùng từ id
 
-    if (!cart || cart.items.length === 0) {
+    if (!cart || cart.items.length === 0) { // kiểm tra xem giỏ hàng có sản phẩm hay không
       return {
         success: false,
         message: 'Your cart is empty',
-        redirectTo: '/cart',
+        redirectTo: '/cart',// chuyển hướng về giỏ hàng
       };
     }
 
-    if (!user.address) {
+    if (!user.address) { // kiểm tra xem người dùng có địa chỉ giao hàng hay không
       return {
         success: false,
         message: 'No shipping address',
@@ -42,7 +42,7 @@ export async function createOrder() {
       };
     }
 
-    if (!user.paymentMethod) {
+    if (!user.paymentMethod) { // kiểm tra xem người dùng có phương thức thanh toán hay không
       return {
         success: false,
         message: 'No payment method',
@@ -50,7 +50,7 @@ export async function createOrder() {
       };
     }
 
-    // Create order object
+    // Create order object : Fomat data
     const order = insertOrderSchema.parse({
       userId: user.id,
       shippingAddress: user.address,
@@ -75,7 +75,7 @@ export async function createOrder() {
           },
         });
       }
-      // Clear cart
+      // Clear cart : Update card sau khi sản phẩm đã được đặt hàng
       await tx.cart.update({
         where: { id: cart.id },
         data: {
@@ -95,7 +95,7 @@ export async function createOrder() {
     return {
       success: true,
       message: 'Order created',
-      redirectTo: `/order/${insertedOrderId}`,
+      redirectTo: `/order/${insertedOrderId}`, // chuyển hướng đến trang chi tiết đơn hàng
     };
   } catch (error) {
     if (isRedirectError(error)) throw error;
@@ -108,10 +108,10 @@ export async function getOrderById(orderId: string) {
   const data = await prisma.order.findFirst({
     where: {
       id: orderId,
-    },
-    include: {
-      orderitems: true,
-      user: { select: { name: true, email: true } },
+    },  
+    include: { //  lấy thông tin chi tiết đơn hàng
+      orderitems: true, // lấy thông tin sản phẩm trong đơn hàng
+      user: { select: { name: true, email: true } }, // lấy thông tin người dùng
     },
   });
 
@@ -206,7 +206,7 @@ export async function approvePayPalOrder(
   }
 }
 
-// Update order to paid
+// Update order to paid : Update thành đã thanh toán
 export async function updateOrderToPaid({
   orderId,
   paymentResult,
@@ -214,7 +214,7 @@ export async function updateOrderToPaid({
   orderId: string;
   paymentResult?: PaymentResult;
 }) {
-  // Get order from database
+  // Get order from database : Lấy thông tin đơn hàng từ database
   const order = await prisma.order.findFirst({
     where: {
       id: orderId,
@@ -227,6 +227,10 @@ export async function updateOrderToPaid({
   if (!order) throw new Error('Order not found');
 
   if (order.isPaid) throw new Error('Order is already paid');
+
+  // nếu đơn hàng đã được thanh toán thì không cho phép thanh toán lại 
+
+  // nếu chưa thanh toán thì sẽ cập nhật đơn hàng thành đã thanh toán
 
   // Transaction to update order and account for product stock
   await prisma.$transaction(async (tx) => {
@@ -303,7 +307,7 @@ type SalesDataType = {
 }[];
 
 // Get sales data and order summary
-export async function getOrderSummary() {
+export async function getOrderSummary() { // Get order summar
   // Get counts for each resource
   const ordersCount = await prisma.order.count();
   const productsCount = await prisma.product.count();
@@ -311,7 +315,7 @@ export async function getOrderSummary() {
 
   // Calculate the total sales
   const totalSales = await prisma.order.aggregate({
-    _sum: { totalPrice: true },
+    _sum: { totalPrice: true }, // cộng thức tính tổng doanh thu
   });
 
   // Get monthly sales
@@ -353,6 +357,8 @@ export async function getAllOrders({
   page: number;
   query: string;
 }) {
+
+  // Dùng thông tin đầu vào build  câu query để lấy dữ liệu
   const queryFilter: Prisma.OrderWhereInput =
     query && query !== 'all'
       ? {

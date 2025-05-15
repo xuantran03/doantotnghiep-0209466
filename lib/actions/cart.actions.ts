@@ -42,7 +42,7 @@ export async function addItemToCart(data: CartItem) {
     // Parse and validate item
     const item = cartItemSchema.parse(data);
 
-    // Find product in database
+    // Find product in database : Tìm sản phẩm trong database để lấy thông tin bỏ vào giỏ hàng
     const product = await prisma.product.findFirst({
       where: { id: item.productId },
     });
@@ -54,7 +54,7 @@ export async function addItemToCart(data: CartItem) {
         userId: userId,
         items: [item],
         sessionCartId: sessionCartId,
-        ...calcPrice([item]),
+        ...calcPrice([item]), // tính toán giá trị của giỏ hàng
       });
 
       // Add to database
@@ -147,6 +147,26 @@ export async function getMyCart() {
   });
 }
 
+/**
+ * Xóa một sản phẩm khỏi giỏ hàng.
+ *
+ * @param productId - ID của sản phẩm cần xóa khỏi giỏ hàng.
+ * @returns Một đối tượng chứa thông tin về kết quả của hành động:
+ *          - `success`: `true` nếu sản phẩm được xóa thành công, `false` nếu có lỗi xảy ra.
+ *          - `message`: Thông báo mô tả kết quả hoặc lỗi.
+ *
+ * @throws Nếu không tìm thấy session giỏ hàng, sản phẩm, hoặc giỏ hàng.
+ * @throws Nếu sản phẩm không tồn tại trong giỏ hàng.
+ *
+ * Chức năng này thực hiện các bước sau:
+ * 1. Kiểm tra session giỏ hàng từ cookie.
+ * 2. Lấy thông tin sản phẩm từ cơ sở dữ liệu.
+ * 3. Lấy giỏ hàng của người dùng.
+ * 4. Kiểm tra xem sản phẩm có tồn tại trong giỏ hàng hay không.
+ * 5. Nếu số lượng sản phẩm là 1, xóa sản phẩm khỏi giỏ hàng. Nếu không, giảm số lượng sản phẩm đi 1.
+ * 6. Cập nhật giỏ hàng trong cơ sở dữ liệu.
+ * 7. Làm mới đường dẫn liên quan đến sản phẩm.
+ */
 export async function removeItemFromCart(productId: string) {
   try {
     // Check for cart cookie

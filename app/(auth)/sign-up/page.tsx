@@ -43,9 +43,9 @@ const SignUpPage = async (props: {
               priority={true}
             />
           </Link>
-          <CardTitle className='text-center'>Create Account</CardTitle>
+          <CardTitle className='text-center'>Tạo tài khoản</CardTitle>
           <CardDescription className='text-center'>
-            Enter your information below to sign up
+            Nhập thông tin của bạn để tạo tài khoản mới
           </CardDescription>
         </CardHeader>
         <CardContent className='space-y-4'>

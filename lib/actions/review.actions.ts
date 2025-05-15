@@ -12,11 +12,11 @@ export async function createUpdateReview(
   data: z.infer<typeof insertReviewSchema>
 ) {
   try {
-    const session = await auth();
+    const session = await auth(); // check xem người dùng đã đăng nhập hay chưa
     if (!session) throw new Error('User is not authenticated');
 
     // Validate and store the review
-    const review = insertReviewSchema.parse({
+    const review = insertReviewSchema.parse({ // format chuẩn data
       ...data,
       userId: session?.user?.id,
     });
@@ -24,7 +24,7 @@ export async function createUpdateReview(
     // Get product that is being reviewed
     const product = await prisma.product.findFirst({
       where: { id: review.productId },
-    });
+    }); // kiểm tra xem sản phẩm có tồn tại hay không ==> lấy bản ghi muốn sửa
 
     if (!product) throw new Error('Product not found');
 
@@ -35,6 +35,13 @@ export async function createUpdateReview(
         userId: review.userId,
       },
     });
+
+    // Nếu đã có review thì không cần tạo mới mà chỉ cần update lại
+    // Nếu chưa có review thì tạo mới
+
+    // Lấy sô lượng review của sản phẩm
+
+    // Update rating 
 
     await prisma.$transaction(async (tx) => {
       if (reviewExists) {
@@ -73,7 +80,7 @@ export async function createUpdateReview(
       });
     });
 
-    revalidatePath(`/product/${product.slug}`);
+    revalidatePath(`/product/${product.slug}`);// làm mới lại trang sản phẩm
 
     return {
       success: true,
@@ -90,7 +97,7 @@ export async function getReviews({ productId }: { productId: string }) {
     where: {
       productId: productId,
     },
-    include: {
+    include: { // relationship với bảng khác
       user: {
         select: {
           name: true,

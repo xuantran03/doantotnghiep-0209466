@@ -88,10 +88,10 @@ const CartTable = ({ cart }: { cart?: Cart }) => {
 
   return (
     <>
-      <h1 className='py-4 h2-bold'>Shopping Cart</h1>
+      <h1 className='py-4 h2-bold'>Giỏ hàng</h1>
       {!cart || cart.items.length === 0 ? (
         <div>
-          Cart is empty. <Link href='/'>Go Shopping</Link>
+          Chưa có sản phẩm nào trong giỏ hàng. <Link href='/'>Mua sắm ngay </Link>
         </div>
       ) : (
         <div className='grid md:grid-cols-4 md:gap-5'>
@@ -99,9 +99,9 @@ const CartTable = ({ cart }: { cart?: Cart }) => {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Item</TableHead>
-                  <TableHead className='text-center'>Quantity</TableHead>
-                  <TableHead className='text-right'>Price</TableHead>
+                  <TableHead>Sản phẩm</TableHead>
+                  <TableHead className='text-center'>Số lượng</TableHead>
+                  <TableHead className='text-right'>Giá thành</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -136,7 +136,7 @@ const CartTable = ({ cart }: { cart?: Cart }) => {
           <Card>
             <CardContent className='p-4 gap-4'>
               <div className='pb-3 text-xl'>
-                Subtotal ({cart.items.reduce((a, c) => a + c.qty, 0)}):
+               Thanh toán  ({cart.items.reduce((a, c) => a + c.qty, 0)}):
                 <span className='font-bold'>
                   {formatCurrency(cart.itemsPrice)}
                 </span>

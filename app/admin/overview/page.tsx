@@ -30,7 +30,7 @@ const AdminOverviewPage = async () => {
       <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-4'>
         <Card>
           <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-            <CardTitle className='text-sm font-medium'>Total Revenue</CardTitle>
+            <CardTitle className='text-sm font-medium'>Doanh Thu</CardTitle>
             <BadgeDollarSign />
           </CardHeader>
           <CardContent>
@@ -78,7 +78,7 @@ const AdminOverviewPage = async () => {
       <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-7'>
         <Card className='col-span-4'>
           <CardHeader>
-            <CardTitle>Overview</CardTitle>
+            <CardTitle>Tổng quan</CardTitle>
           </CardHeader>
           <CardContent>
             <Charts
@@ -89,8 +89,8 @@ const AdminOverviewPage = async () => {
           </CardContent>
         </Card>
         <Card className='col-span-3'>
-          <CardHeader>
-            <CardTitle>Recent Sales</CardTitle>
+          <CardHeader>Gần đây
+            <CardTitle></CardTitle>
           </CardHeader>
           <CardContent>
             <Table>

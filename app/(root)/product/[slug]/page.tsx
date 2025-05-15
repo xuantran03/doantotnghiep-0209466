@@ -67,7 +67,7 @@ const ProductDetailsPage = async (props: {
                   {product.stock > 0 ? (
                     <Badge variant='outline'>In Stock</Badge>
                   ) : (
-                    <Badge variant='destructive'>Out Of Stock</Badge>
+                    <Badge variant='destructive'>Hết hàng</Badge>
                   )}
                 </div>
                 {product.stock > 0 && (
@@ -91,7 +91,7 @@ const ProductDetailsPage = async (props: {
         </div>
       </section>
       <section className='mt-10'>
-        <h2 className='h2-bold mb-5'>Customer Reviews</h2>
+        <h2 className='h2-bold mb-5'>Đánh giá</h2>
         <ReviewList
           userId={userId || ''}
           productId={product.id}

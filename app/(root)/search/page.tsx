@@ -64,7 +64,7 @@ export async function generateMetadata(props: {
     };
   } else {
     return {
-      title: 'Search Products',
+      title: 'Tìm kiếm sản phẩm',
     };
   }
 }
@@ -138,7 +138,7 @@ const SearchPage = async (props: {
                 }`}
                 href={getFilterUrl({ c: 'all' })}
               >
-                Any
+                Tất cả
               </Link>
             </li>
             {categories.map((x) => (
@@ -162,7 +162,7 @@ const SearchPage = async (props: {
                 className={`${price === 'all' && 'font-bold'}`}
                 href={getFilterUrl({ p: 'all' })}
               >
-                Any
+                Tất cả
               </Link>
             </li>
             {prices.map((p) => (
@@ -178,7 +178,7 @@ const SearchPage = async (props: {
           </ul>
         </div>
         {/* Rating Links */}
-        <div className='text-xl mb-2 mt-8'>Customer Ratings</div>
+        <div className='text-xl mb-2 mt-8'>Rating </div>
         <div>
           <ul className='space-y-1'>
             <li>
@@ -186,7 +186,7 @@ const SearchPage = async (props: {
                 className={`${rating === 'all' && 'font-bold'}`}
                 href={getFilterUrl({ r: 'all' })}
               >
-                Any
+                Tất cả
               </Link>
             </li>
             {ratings.map((r) => (
@@ -220,7 +220,7 @@ const SearchPage = async (props: {
             ) : null}
           </div>
           <div>
-            Sort by{' '}
+            Sắp xếp{' '}
             {sortOrders.map((s) => (
               <Link
                 key={s}

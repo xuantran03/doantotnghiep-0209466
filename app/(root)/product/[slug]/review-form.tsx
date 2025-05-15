@@ -98,15 +98,15 @@ const ReviewForm = ({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <Button onClick={handleOpenForm} variant='default'>
-        Write a Review
+      Đánh giá
       </Button>
       <DialogContent className='sm:max-w-[425px]'>
         <Form {...form}>
           <form method='post' onSubmit={form.handleSubmit(onSubmit)}>
             <DialogHeader>
-              <DialogTitle>Write a Review</DialogTitle>
+              <DialogTitle>Đánh giá</DialogTitle>
               <DialogDescription>
-                Share your thoughts with other customers
+               Đánh giá sản phẩm 
               </DialogDescription>
             </DialogHeader>
             <div className='grid gap-4 py-4'>

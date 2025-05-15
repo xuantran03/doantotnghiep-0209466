@@ -45,7 +45,7 @@ const ReviewList = ({
 
   return (
     <div className='space-y-4'>
-      {reviews.length === 0 && <div>No reviews yet</div>}
+      {reviews.length === 0 && <div>Chưa có đánh giá</div>}
       {userId ? (
         <ReviewForm
           userId={userId}
