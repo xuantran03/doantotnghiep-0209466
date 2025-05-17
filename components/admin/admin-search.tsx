@@ -23,7 +23,7 @@ const AdminSearch = () => {
     <form action={formActionUrl} method='GET'>
       <Input
         type='search'
-        placeholder='Search...'
+        placeholder='Tìm kiếm'
         name='query'
         value={queryValue}
         onChange={(e) => setQueryValue(e.target.value)}

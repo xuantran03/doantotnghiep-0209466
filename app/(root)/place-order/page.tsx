@@ -42,12 +42,12 @@ const PlaceOrderPage = async () => {
   return (
     <>
       <CheckoutSteps current={3} />
-      <h1 className='py-4 text-2xl'>Place Order</h1>
+      <h1 className='py-4 text-2xl'>Đặt hàng</h1>
       <div className='grid md:grid-cols-3 md:gap-5'>
         <div className='md:col-span-2 overflow-x-auto space-y-4'>
           <Card>
             <CardContent className='p-4 gap-4'>
-              <h2 className='text-xl pb-4'>Shipping Address</h2>
+              <h2 className='text-xl pb-4'>Địa chỉ ship hàng</h2>
               <p>{userAddress.fullName}</p>
               <p>
                 {userAddress.streetAddress}, {userAddress.city}{' '}
@@ -55,7 +55,7 @@ const PlaceOrderPage = async () => {
               </p>
               <div className='mt-3'>
                 <Link href='/shipping-address'>
-                  <Button variant='outline'>Edit</Button>
+                  <Button variant='outline'>Sửa</Button>
                 </Link>
               </div>
             </CardContent>
@@ -63,7 +63,7 @@ const PlaceOrderPage = async () => {
 
           <Card>
             <CardContent className='p-4 gap-4'>
-              <h2 className='text-xl pb-4'>Payment Method</h2>
+              <h2 className='text-xl pb-4'>Phương thức thanh toán</h2>
               <p>{user.paymentMethod}</p>
               <div className='mt-3'>
                 <Link href='/payment-method'>
@@ -75,13 +75,13 @@ const PlaceOrderPage = async () => {
 
           <Card>
             <CardContent className='p-4 gap-4'>
-              <h2 className='text-xl pb-4'>Order Items</h2>
+              <h2 className='text-xl pb-4'>Các mặt hàng</h2>
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Item</TableHead>
-                    <TableHead>Quantity</TableHead>
-                    <TableHead>Price</TableHead>
+                    <TableHead>Tên</TableHead>
+                    <TableHead>Số lượng</TableHead>
+                    <TableHead>Giá</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -105,7 +105,7 @@ const PlaceOrderPage = async () => {
                         <span className='px-2'>{item.qty}</span>
                       </TableCell>
                       <TableCell className='text-right'>
-                        ${item.price}
+                        {item.price}đ
                       </TableCell>
                     </TableRow>
                   ))}
@@ -118,19 +118,19 @@ const PlaceOrderPage = async () => {
           <Card>
             <CardContent className='p-4 gap-4 space-y-4'>
               <div className='flex justify-between'>
-                <div>Items</div>
+                <div>Tổng tiền hàng</div>
                 <div>{formatCurrency(cart.itemsPrice)}</div>
               </div>
               <div className='flex justify-between'>
-                <div>Tax</div>
+                <div>Thuế</div>
                 <div>{formatCurrency(cart.taxPrice)}</div>
               </div>
               <div className='flex justify-between'>
-                <div>Shipping</div>
+                <div>Phí ship</div>
                 <div>{formatCurrency(cart.shippingPrice)}</div>
               </div>
               <div className='flex justify-between'>
-                <div>Total</div>
+                <div>Tổng</div>
                 <div>{formatCurrency(cart.totalPrice)}</div>
               </div>
               <PlaceOrderForm />

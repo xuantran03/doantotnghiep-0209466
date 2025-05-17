@@ -34,10 +34,10 @@ PurchaseReceiptEmail.PreviewProps = {
       country: 'US',
     },
     createdAt: new Date(),
-    totalPrice: '100',
-    taxPrice: '10',
-    shippingPrice: '10',
-    itemsPrice: '80',
+    totalPrice: '100000',
+    taxPrice: '10000',
+    shippingPrice: '100000',
+    itemsPrice: '80000',
     orderitems: sampleData.products.map((x) => ({
       name: x.name,
       orderId: '123',
@@ -54,7 +54,7 @@ PurchaseReceiptEmail.PreviewProps = {
     paymentResult: {
       id: '123',
       status: 'succeeded',
-      pricePaid: '100',
+      pricePaid: '100000',
       email_address: 'test@test.com',
     },
   },

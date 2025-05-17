@@ -43,7 +43,7 @@ const AdminOverviewPage = async () => {
         </Card>
         <Card>
           <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-            <CardTitle className='text-sm font-medium'>Sales</CardTitle>
+            <CardTitle className='text-sm font-medium'>Đã bán</CardTitle>
             <CreditCard />
           </CardHeader>
           <CardContent>
@@ -54,7 +54,7 @@ const AdminOverviewPage = async () => {
         </Card>
         <Card>
           <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-            <CardTitle className='text-sm font-medium'>Customers</CardTitle>
+            <CardTitle className='text-sm font-medium'>Số khách hàng</CardTitle>
             <Users />
           </CardHeader>
           <CardContent>
@@ -65,7 +65,7 @@ const AdminOverviewPage = async () => {
         </Card>
         <Card>
           <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-            <CardTitle className='text-sm font-medium'>Products</CardTitle>
+            <CardTitle className='text-sm font-medium'>Số sản phẩm</CardTitle>
             <Barcode />
           </CardHeader>
           <CardContent>
@@ -96,10 +96,10 @@ const AdminOverviewPage = async () => {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>BUYER</TableHead>
-                  <TableHead>DATE</TableHead>
-                  <TableHead>TOTAL</TableHead>
-                  <TableHead>ACTIONS</TableHead>
+                  <TableHead>Người mua</TableHead>
+                  <TableHead>Ngày mua</TableHead>
+                  <TableHead>Tổng tiền</TableHead>
+                  <TableHead>Hành động</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -114,7 +114,7 @@ const AdminOverviewPage = async () => {
                     <TableCell>{formatCurrency(order.totalPrice)}</TableCell>
                     <TableCell>
                       <Link href={`/order/${order.id}`}>
-                        <span className='px-2'>Details</span>
+                        <span className='px-2'>Chi tiết</span>
                       </Link>
                     </TableCell>
                   </TableRow>

@@ -180,7 +180,7 @@ const ShippingAddressForm = ({ address }: { address: ShippingAddress }) => {
                 ) : (
                   <ArrowRight className='w-4 h-4' />
                 )}{' '}
-                Continue
+                Tiếp tục
               </Button>
             </div>
           </form>

@@ -65,14 +65,14 @@ const DealCountdown = () => {
     return (
       <section className='grid grid-cols-1 md:grid-cols-2 my-20'>
         <div className='flex flex-col gap-2 justify-center'>
-          <h3 className='text-3xl font-bold'>Deal Has Ended</h3>
+          <h3 className='text-3xl font-bold'>Giao dịch đã kết thúc</h3>
           <p>
-            This deal is no longer available. Check out our latest promotions!
+            Thỏa thuận này không còn nữa. Hãy xem các chương trình khuyến mãi mới nhất của chúng tôi
           </p>
 
           <div className='text-center'>
             <Button asChild>
-              <Link href='/search'>View Products</Link>
+              <Link href='/search'>Xem sản phẩm</Link>
             </Button>
           </div>
         </div>

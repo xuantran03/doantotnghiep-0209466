@@ -10,28 +10,29 @@ const IconBoxes = () => {
             <ShoppingBag />
             <div className='text-sm font-bold'>Free Shipping</div>
             <div className='text-sm text-muted-foreground'>
-              Free shipping on orders above $100
+              Miễn phí vận chuyển cho đơn hàng trên 100.000đ
             </div>
           </div>
           <div className='space-y-2'>
             <DollarSign />
-            <div className='text-sm font-bold'>Money Back Guarantee</div>
+            <div className='text-sm font-bold'>Đảm bảo hoàn tiền</div>
             <div className='text-sm text-muted-foreground'>
-              Within 30 days of purchase
+             Trong vòng 30 ngày kể từ ngày mua
             </div>
           </div>
           <div className='space-y-2'>
             <WalletCards />
-            <div className='text-sm font-bold'>Flexible Payment</div>
+            <div className='text-sm font-bold'>Thanh toán linh hoạt</div>
             <div className='text-sm text-muted-foreground'>
-              Pay with COD
+             
+Thanh toán bằng COD
             </div>
           </div>
           <div className='space-y-2'>
             <Headset />
             <div className='text-sm font-bold'>24/7 Support</div>
             <div className='text-sm text-muted-foreground'>
-              Get support at any time
+            Nhận hỗ trợ bất cứ lúc nào
             </div>
           </div>
         </CardContent>

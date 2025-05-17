@@ -8,24 +8,26 @@ import Link from 'next/link';
 
 const prices = [
   {
-    name: '$1 to $50',
-    value: '1-50',
+    name: '1000đ to 50000đ',
+    value: '1000-50000',
+
   },
   {
-    name: '$51 to $100',
-    value: '51-100',
+    name: '50001đ to 100000đ',
+
+    value: '50001-100000',
   },
   {
-    name: '$101 to $200',
-    value: '101-200',
+    name: '100001đ to 200000đ',
+    value: '101001-200000',
   },
   {
-    name: '$201 to $500',
-    value: '201-500',
+    name: '200001đ to 500000đ',
+    value: '200001-500000',
   },
   {
-    name: '$501 to $1000',
-    value: '501-1000',
+    name: '500001đ to 1000000',
+    value: '500001-1000000',
   },
 ];
 
@@ -233,7 +235,7 @@ const SearchPage = async (props: {
           </div>
         </div>
         <div className='grid grid-cols-1 gap-4 md:grid-cols-3'>
-          {products.data.length === 0 && <div>No products found</div>}
+          {products.data.length === 0 && <div>Không tìm thấy sản phẩm</div>}
           {products.data.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

@@ -48,7 +48,7 @@ const ProductDetailsPage = async (props: {
               </div>
             </div>
             <div className='mt-10'>
-              <p className='font-semibold'>Description</p>
+              <p className='font-semibold'>Mô tả</p>
               <p>{product.description}</p>
             </div>
           </div>

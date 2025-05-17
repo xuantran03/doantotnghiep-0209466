@@ -102,10 +102,12 @@ const CartTable = ({ cart }: { cart?: Cart }) => {
                   <TableHead>Sản phẩm</TableHead>
                   <TableHead className='text-center'>Số lượng</TableHead>
                   <TableHead className='text-right'>Giá thành</TableHead>
+                  <TableHead className='text-right'>Tổng tiền</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {cart.items.map((item) => (
+                  
                   <TableRow key={item.slug}>
                     <TableCell>
                       <Link
@@ -126,7 +128,8 @@ const CartTable = ({ cart }: { cart?: Cart }) => {
                       <span>{item.qty}</span>
                       <AddButton item={item} />
                     </TableCell>
-                    <TableCell className='text-right'>${item.price}</TableCell>
+                    <TableCell className='text-right'>{item.price}</TableCell>
+                    <TableCell className='text-right'>{Number(item.price) * Number(item.qty)}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -153,7 +156,7 @@ const CartTable = ({ cart }: { cart?: Cart }) => {
                 ) : (
                   <ArrowRight className='w-4 h-4' />
                 )}{' '}
-                Proceed to Checkout
+                Tiến hành thanh toán
               </Button>
             </CardContent>
           </Card>

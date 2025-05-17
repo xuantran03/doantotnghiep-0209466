@@ -6,19 +6,19 @@ import React from 'react';
 
 const links = [
   {
-    title: 'Overview',
+    title: 'Tổng quan',
     href: '/admin/overview',
   },
   {
-    title: 'Products',
+    title: 'Sản phẩm',
     href: '/admin/products',
   },
   {
-    title: 'Orders',
+    title: 'Đơn hàng',
     href: '/admin/orders',
   },
   {
-    title: 'Users',
+    title: 'Khách hàng',
     href: '/admin/users',
   },
 ];

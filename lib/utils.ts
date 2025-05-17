@@ -53,10 +53,10 @@ export function round2(value: number | string) {
   }
 }
 
-const CURRENCY_FORMATTER = new Intl.NumberFormat('en-US', {
-  currency: 'USD',
+const CURRENCY_FORMATTER = new Intl.NumberFormat('vi-VN', {
+  currency: 'VND',
   style: 'currency',
-  minimumFractionDigits: 2,
+  minimumFractionDigits: 0,
 });
 
 // Format currency using the formatter above

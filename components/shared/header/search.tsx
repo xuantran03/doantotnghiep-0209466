@@ -34,7 +34,7 @@ const Search = async () => {
         <Input
           name='q'
           type='text'
-          placeholder='Search...'
+          placeholder='Tìm kiếm'
           className='md:w-[100px] lg:w-[300px]'
         />
         <Button>
